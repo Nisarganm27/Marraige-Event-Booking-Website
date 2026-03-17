@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marriage Booking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            padding: 10px 15px;
+            background: #0056f5;
+            color: white;
+            border-radius: 5px;
+        }
+        a:hover {
+            background: #003ea3;
+        }
+        hr {
+            margin: 20px 0;
+        }
+        .payment-link {
+            font-size: 18px;
+            background: #28a745;
+        }
+        .payment-link:hover {
+            background: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>💍 Marriage Booking System</h1>
+    <p>Select a service to continue:</p>
+
+    <ul>
+        <li><a href="/halls/">🏛️ Hall Booking</a></li>
+        <li><a href="/catering/">🍽️ Catering</a></li>
+        <li><a href="/decoration/">🎉 Decoration</a></li>
+        <li><a href="/mehandi/">💍 Mehandi Designers</a></li>
+        <li><a href="/photography/">📸 Photography</a></li>
+    </ul>
+
+    <hr>
+    <a href="{% url 'book_service' %}">Book Now</a>
+
+
+
+    <!-- ⭐ Payment Button -->
+    <a href="{% url 'fake_payment' %}" class="payment-link">
+        💳 Proceed to Payment
+    </a>
+    <h1>Welcome to Marriage Booking System</h1>
+<a href="/login/">Login</a> | <a href="/register/">Register</a>
+
+<hr>
+
+
+</body>
+</html>

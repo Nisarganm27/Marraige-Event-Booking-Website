@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Decoration Services</title>
+    <link rel="stylesheet" href="{% static 'css/service_cards.css' %}">
+</head>
+<body>
+
+<h1>🎀 Decoration Services</h1>
+
+<form method="get">
+    <input type="date" name="date" value="{{ selected_date }}">
+    <button type="submit">Check Availability</button>
+</form>
+
+<div class="service-container">
+{% for item in services %}
+    <div class="service-card">
+        <div class="service-title">{{ item.service.name }}</div>
+
+        <p>🎨 Theme: {{ item.service.theme }}</p>
+        <p>💰 ₹{{ item.service.price }}</p>
+        <p>📞 {{ item.service.contact }}</p>
+
+        {% if item.is_booked %}
+            <p class="booked">❌ Booked</p>
+        {% else %}
+            <p class="available">✅ Available</p>
+            <a href="{% url 'book_service' 'decoration' item.service.id %}?date={{ selected_date }}"
+           class="btn btn-success">
+            Book Now
+        </a>
+        {% endif %}
+    </div>
+{% empty %}
+    <p>No decoration services found</p>
+{% endfor %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Marriage Halls</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/service_cards.css' %}">
+</head>
+<body>
+
+<h1 class="page-title">🏛 Available Marriage Halls</h1>
+
+<form method="get">
+    <input type="date" name="date" required>
+    <button type="submit">Check Availability</button>
+</form>
+
+<br>
+
+<div class="card-container">
+{% for item in hall_data %}
+    <div class="service-card">
+
+        <h3>{{ item.hall.name }}</h3>
+        <p>📍 {{ item.hall.location }}</p>
+        <p>💰 ₹{{ item.hall.price }}</p>
+        <p>📞 {{ item.hall.contact }}</p>
+
+        {% if selected_date %}
+            {% if item.is_booked %}
+                <p style="color:red;">❌ Booked</p>
+            {% else %}
+                <p style="color:green;">✅ Available</p>
+                <a href="{% url 'book_service' 'hall' item.hall.id %}?date={{ selected_date }}"
+                   class="btn btn-success">
+                    Book Now
+                </a>
+            {% endif %}
+        {% else %}
+            <p>Select a date to check availability</p>
+        {% endif %}
+
+    </div>
+{% empty %}
+    <p>No halls found</p>
+{% endfor %}
+</div>
+
+</body>
+</html>

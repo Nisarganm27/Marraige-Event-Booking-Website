@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Catering Services</title>
+    <link rel="stylesheet" href="{% static 'css/service_card.css' %}">
+</head>
+<body>
+
+<h1>🍽 Catering Services</h1>
+
+<form method="get">
+    <input type="date" name="date" value="{{ selected_date }}">
+    <button type="submit">Check Availability</button>
+</form>
+
+<br>
+
+{% if services %}
+    <div class="card-container">
+        {% for item in services %}
+            <div class="service-card">
+
+                <h3>{{ item.service.name }}</h3>
+
+                <p>🍕 Menu: {{ item.service.menu_type  }}</p>
+
+
+                <p>💰 Price: ₹{{ item.service.price }}</p>
+
+                <p>📞 {{ item.service.contact }}</p>
+
+                {% if selected_date %}
+                    {% if item.is_booked %}
+                        <p class="status booked">❌ Booked</p>
+                    {% else %}
+                        <p class="status available">✅ Available</p>
+                        <a class="book-btn"
+                           href="{% url 'book_service' 'catering' item.service.id %}?date={{ selected_date }}"
+           class="btn btn-success">
+                            Book Now
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <p>Select a date to check availability</p>
+                {% endif %}
+
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No catering services available</p>
+{% endif %}
+
+</body>
+</html>
