@@ -1,0 +1,23 @@
+<h2>Rate Your Experience</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Rating:</label><br>
+    <select name="rating" required>
+        <option value="">Select</option>
+        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+        <option value="4">⭐⭐⭐⭐ Good</option>
+        <option value="3">⭐⭐⭐ Average</option>
+        <option value="2">⭐⭐ Poor</option>
+        <option value="1">⭐ Very Bad</option>
+    </select>
+
+    <br><br>
+
+    <label>Comment (optional):</label><br>
+    <textarea name="comment"></textarea>
+
+    <br><br>
+    <button type="submit">Submit Review</button>
+</form>

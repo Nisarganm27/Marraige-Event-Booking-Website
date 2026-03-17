@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+<div class="auth-container">
+    <h2>Admin Login</h2>
+    {% for message in messages %}<p class="msg">{{ message }}</p>{% endfor %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-box">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter admin username" required>
+        </div>
+        <div class="input-box">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter password" required>
+        </div>
+        <button type="submit" class="auth-btn">Login</button>
+    </form>
+    <p>New admin? <a href="{% url 'admin_register' %}">Register</a></p>
+</div>
+</body>
+</html>

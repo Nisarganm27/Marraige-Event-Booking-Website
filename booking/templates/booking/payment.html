@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+        }
+        .card {
+            width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        button {
+            background: green;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Payment Page</h2>
+
+<p>Service: {{ booking.service.name }}</p>
+<p>Date: {{ booking.booking_date }}</p>
+<p>Price: ₹{{ booking.price }}</p>
+<p>Status: {{ booking.status }}</p>
+
+{% if error %}
+  <p style="color:red">{{ error }}</p>
+{% else %}
+  <form method="post">
+      {% csrf_token %}
+      <button type="submit">Pay Now</button>
+  </form>
+{% endif %}
+
+
+
+</div>
+
+</body>
+</html>
