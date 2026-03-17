@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photographers</title>
+    <link rel="stylesheet" href="{% static 'css/service_card.css' %}">
+</head>
+<body>
+
+<h1>📸 Photographers</h1>
+
+<form method="get">
+    <input type="date" name="date" value="{{ selected_date }}">
+    <button type="submit">Check Availability</button>
+</form>
+
+<hr>
+
+{% for item in photographers %}
+    <div style="border:1px solid #ccc; padding:15px; margin-bottom:15px; width:350px;">
+
+        <h3>{{ item.service.name }}</h3>
+
+        📦 {{ item.service.package_name }} <br>
+        💰 ₹{{ item.service.price }} <br>
+        📞 {{ item.service.contact }} <br>
+
+        {% if selected_date %}
+            {% if item.is_booked %}
+                <p style="color:red;">❌ Booked</p>
+            {% else %}
+                <p style="color:green;">✅ Available</p>
+                <a href="{% url 'book_service' 'photography' item.service.id %}">
+                    Book Now
+                </a>
+            {% endif %}
+        {% else %}
+            <p>Select a date to check availability</p>
+        {% endif %}
+
+    </div>
+{% empty %}
+    <p>No photographers found</p>
+{% endfor %}
+</body>
+</html>
